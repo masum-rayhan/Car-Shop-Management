@@ -1,0 +1,86 @@
+1) create or replace trigger trigger_car
+after insert or update or delete on car
+declare
+action varchar(100);
+begin
+
+if inserting then
+action := 'One car data inserted into the car table ';
+
+elsif updating then
+action := 'One car data updated into the car table ';
+
+elsif deleting then
+action := 'One car data deleted from the the car table ';
+
+end if;
+
+dbms_output.put_line(action);
+
+end;
+
+2) create or replace trigger trigger_carshop_user
+after insert or update or delete on carshop_user
+declare
+action varchar(100);
+begin
+
+if inserting then
+action := 'One user data inserted into the carshop_user table ';
+
+elsif updating then
+action := 'One user data updated into the carshop_user table ';
+
+elsif deleting then
+action := 'One user data deleted from the the carshop_user table ';
+
+end if;
+
+dbms_output.put_line(action);
+
+end;
+
+3) create or replace trigger trigger_purchased_history
+after insert or update or delete on purchased_history
+declare
+action varchar(100);
+begin
+
+if inserting then
+action := 'One history data inserted into the purchased_history table ';
+
+elsif updating then
+action := 'One history data updated into the purchased_history table ';
+
+elsif deleting then
+action := 'One history data deleted from the the purchased_history table ';
+
+end if;
+
+dbms_output.put_line(action);
+
+end;
+
+4) create or replace trigger trigger_sold_history
+after insert or update or delete on sold_history
+declare
+action varchar(100);
+begin
+
+if inserting then
+action := 'One history data inserted into the sold_history table ';
+
+elsif updating then
+action := 'One history data updated into the sold_history table ';
+
+elsif deleting then
+action := 'One history data deleted from the the sold_history table ';
+
+end if;
+
+dbms_output.put_line(action);
+
+end;
+
+
+

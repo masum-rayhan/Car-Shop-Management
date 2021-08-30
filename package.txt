@@ -1,0 +1,52 @@
+create or replace package car_operation as
+
+PROCEDURE insertinto_car(
+       carid car.c_id%TYPE,
+       cname car.c_name%TYPE,
+       cmodel car.model%TYPE,
+       cprice car.price%TYPE,
+       cstock car.stock%TYPE);
+
+procedure car_update(carid car.c_id%TYPE,
+       cname car.c_name%TYPE,
+       cmodel car.model%TYPE,
+       cprice car.price%TYPE,
+       cstock car.stock%TYPE);
+
+procedure car_delete(carid car.c_id%TYPE);
+
+end car_operation;
+
+
+create or replace package body car_operation as
+
+PROCEDURE insertinto_car(
+       carid car.c_id%TYPE,
+       cname car.c_name%TYPE,
+       cmodel car.model%TYPE,
+       cprice car.price%TYPE,
+       cstock car.stock%TYPE)
+AS
+BEGIN
+
+  INSERT INTO CAR VALUES (carid, cname, cmodel, cprice, cstock);
+
+END insertinto_car;
+
+procedure car_update(carid car.c_id%TYPE,
+       cname car.c_name%TYPE,
+       cmodel car.model%TYPE,
+       cprice car.price%TYPE,
+       cstock car.stock%TYPE) 
+AS
+BEGIN
+update car set  c_name = cname, model = cmodel, price = cprice, stock = cstock where c_id = carid;
+END car_update;
+
+procedure car_delete(carid car.c_id%TYPE) AS
+BEGIN
+delete from car where c_id = carid;
+END car_delete;
+
+end car_operation;
+

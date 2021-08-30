@@ -1,0 +1,107 @@
+1) CREATE OR REPLACE PROCEDURE insertinto_carshop_user(
+       userid carshop_user.u_id%TYPE,
+       uname carshop_user.u_name%TYPE,
+       upassword carshop_user.u_password%TYPE,
+       uaddress carshop_user.address%TYPE,
+       ucity carshop_user.city%TYPE,
+       uphone carshop_user.mobile_no%TYPE,
+       usertype carshop_user.usertype%TYPE)
+IS
+BEGIN
+
+  INSERT INTO CARSHOP_USER VALUES (userid, uname, upassword, uaddress, ucity, uphone, usertype);
+
+END;
+
+
+BEGIN insertinto_carshop_user('100','Mahadi Hasan Al Amin','1234','Sreepur, Gazipur','Dhaka','01632104245','Admin'); END;
+select * from carshop_user
+
+
+2)create or replace procedure carshop_user_update(userid carshop_user.u_id%TYPE,
+       uname carshop_user.u_name%TYPE,
+       upassword carshop_user.u_password%TYPE,
+       uaddress carshop_user.address%TYPE,
+       ucity carshop_user.city%TYPE,
+       uphone carshop_user.mobile_no%TYPE,
+       usertype carshop_user.usertype%TYPE) 
+IS
+BEGIN
+update carshop_user set  u_name = uname, u_password = upassword, address = uaddress, city = ucity, mobile_no = uphone, usertype=usertype where u_id = userid;
+END;
+
+3) create or replace procedure carshop_user_delete(userid carshop_user.u_id%TYPE) IS
+BEGIN
+delete from carshop_user where u_id = userid;
+END;
+
+
+4) CREATE OR REPLACE PROCEDURE insertinto_car(
+       carid car.c_id%TYPE,
+       cname car.c_name%TYPE,
+       cmodel car.model%TYPE,
+       cprice car.price%TYPE,
+       cstock car.stock%TYPE)
+IS
+BEGIN
+
+  INSERT INTO CAR VALUES (carid, cname, cmodel, cprice, cstock);
+
+END;
+
+5) create or replace procedure car_update(carid car.c_id%TYPE,
+       cname car.c_name%TYPE,
+       cmodel car.model%TYPE,
+       cprice car.price%TYPE,
+       cstock car.stock%TYPE) 
+IS
+BEGIN
+update car set  c_name = cname, model = cmodel, price = cprice, stock = cstock where c_id = carid;
+END;
+
+
+6)create or replace procedure car_delete(carid car.c_id%TYPE) IS
+BEGIN
+delete from car where c_id = carid;
+END;
+
+7) 
+
+ create or replace procedure insertinto_purchased_history(
+       userid purchased_history.u_id%TYPE,      
+       carid purchased_history.c_id%TYPE,
+       cname purchased_history.c_name%TYPE,
+       cmodel purchased_history.model%TYPE,
+       cprice purchased_history.price%TYPE,
+       cquantity purchased_history.quantity%TYPE,
+       ctotal_amount purchased_history.total_amount%TYPE,
+       cpayment purchased_history.payment%TYPE) 
+IS
+BEGIN
+INSERT INTO PURCHASED_HISTORY VALUES (userid, carid, cname, cmodel, cprice, cquantity, ctotal_amount, cpayment);
+END;
+
+8) create or replace procedure insertinto_sold_history(
+       userid sold_history.u_id%TYPE,
+       carid sold_history.c_id%TYPE,
+       cname purchased_history.c_name%TYPE,
+       cmodel purchased_history.model%TYPE,
+       cprice purchased_history.price%TYPE,
+       cquantity purchased_history.quantity%TYPE,
+       ctotal_amount purchased_history.total_amount%TYPE,
+       cpayment purchased_history.payment%TYPE) 
+IS
+BEGIN
+INSERT INTO SOLD_HISTORY VALUES (userid, carid, cname, cmodel, cprice, cquantity, ctotal_amount, cpayment);
+END;
+
+9) create or replace function total_sales
+return number
+is
+
+amount sold_history.payment%type;
+
+begin
+select sum(payment) into amount from sold_history;
+return amount;
+end;

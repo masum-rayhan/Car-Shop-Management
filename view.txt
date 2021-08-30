@@ -1,0 +1,8 @@
+1) create or replace view view_cars as 
+select * from car order by c_id asc;
+
+2) create or replace view view_customer as 
+select * from carshop_user where usertype = 'Customer' order by u_id asc;
+
+3) create or replace view view_sold_history as 
+select * from sold_history order by u_id asc;
